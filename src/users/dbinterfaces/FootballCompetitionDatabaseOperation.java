@@ -1,5 +1,5 @@
 package users.dbinterfaces;
 
-public class FootballCompetitionDatabaseOperation {
+public interface FootballCompetitionDatabaseOperation {
     
 }

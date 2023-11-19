@@ -1,5 +1,5 @@
 package users.dbinterfaces;
 
-public class ClubDatabaseOperation {
+public interface ClubDatabaseOperation {
     
 }
