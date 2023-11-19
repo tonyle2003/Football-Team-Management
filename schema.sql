@@ -51,6 +51,5 @@ CREATE TABLE goal(
     id VARCHAR(255) PRIMARY KEY,
     id_match VARCHAR(255) FOREIGN KEY REFERENCES match(id),
     id_player VARCHAR(255) FOREIGN KEY REFERENCES player(id),
-    id_club VARCHAR(255) FOREIGN KEY REFERENCES club(id),
     goal_type VARCHAR(255)
 );
