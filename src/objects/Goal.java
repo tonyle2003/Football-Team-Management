@@ -5,13 +5,13 @@ public class Goal {
     private String id;
     private GoalType goalType;
 
+    public enum GoalType {
+        PENALTY, LONG_RANGE, OG, NORMAL, HEAD;
+    }
+
     public Goal(String id, GoalType goalType) {
         this.id = id;
         this.goalType = goalType;
-    }
-
-    public enum GoalType {
-        PENALTY, LONG_RANGE, OG, NORMAL;
     }
 
     public String getId() {

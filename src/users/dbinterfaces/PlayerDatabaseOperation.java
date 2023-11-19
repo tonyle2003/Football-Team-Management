@@ -7,5 +7,5 @@ import users.Player;
 public interface PlayerDatabaseOperation {
 
     List<Player> findAll();
-    List<Player> findByNumberOfGoal(int goal);
+    
 }

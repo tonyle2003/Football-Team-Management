@@ -1,10 +1,9 @@
 package objects.dbinterfaces;
 
-import java.util.List;
-
-import objects.Goal;
+import java.sql.Date;
 
 public interface GoalDatabaseOperation {
     
-    List<Goal> findAll();
+    int findGoalOfPlayerInSeason(String playerId, Date date);
+    int findGoalOfPlayer(String playerId);
 }
