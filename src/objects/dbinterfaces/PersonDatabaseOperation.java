@@ -1,5 +1,5 @@
 package objects.dbinterfaces;
 
-public class PersonDatabaseOperation {
+public interface PersonDatabaseOperation {
     
 }

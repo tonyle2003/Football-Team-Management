@@ -1,5 +1,5 @@
 package objects.dbinterfaces;
 
-public class MatchDatabaseOperation {
+public interface MatchDatabaseOperation {
     
 }

@@ -1,5 +1,5 @@
 package objects.dbinterfaces;
 
-public class GoalDatabaseOperation {
+public interface GoalDatabaseOperation {
     
 }
