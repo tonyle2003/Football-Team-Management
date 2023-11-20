@@ -83,16 +83,16 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             Map<Player, Integer> result = new HashMap<>();
             while (resultSet.next()) {
                 Player current = new Player(
-                    resultSet.getString("person.id"), 
+                    resultSet.getString("person.id"),
                     resultSet.getString("person.name"),
-                    resultSet.getString("person.nationality"), 
+                    resultSet.getString("person.nationality"),
                     resultSet.getDate("person.date_of_birth"),
                     resultSet.getDouble("player.height"), 
                     resultSet.getDouble("player.weight"),
                     resultSet.getInt("player.number"));
                 int scored = goalDOB.findGoalOfPlayer(resultSet.getString("person.id"));
                 if (scored >= goal) {
-                    result.put(current, null);
+                    result.put(current, scored);
                 }
             }
             return result;
