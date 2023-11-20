@@ -36,7 +36,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
                         result.getString("person.id"),
                         result.getString("person.name"),
                         result.getString("person.nationality"),
-                        result.getDate("person.date_of_birth"),
+                        result.getDate("person.date_of_birth").toLocalDate(),
                         result.getDouble("player.height"),
                         result.getDouble("player.weight"),
                         result.getInt("player.number")));
@@ -86,7 +86,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
                         resultSet.getString("person.id"),
                         resultSet.getString("person.name"),
                         resultSet.getString("person.nationality"),
-                        resultSet.getDate("person.date_of_birth"),
+                        resultSet.getDate("person.date_of_birth").toLocalDate(),
                         resultSet.getDouble("player.height"),
                         resultSet.getDouble("player.weight"),
                         resultSet.getInt("player.number"));
@@ -114,7 +114,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
                         resultSet.getString("person.id"),
                         resultSet.getString("person.name"),
                         resultSet.getString("person.nationality"),
-                        resultSet.getDate("person.date_of_birth"),
+                        resultSet.getDate("person.date_of_birth").toLocalDate(),
                         resultSet.getDouble("player.height"),
                         resultSet.getDouble("player.weight"),
                         resultSet.getInt("player.number"));
@@ -138,7 +138,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
                 players.add(new Player(resultSet.getString("person.id"),
                         resultSet.getString("person.name"),
                         resultSet.getString("person.nationality"),
-                        resultSet.getDate("person.date_of_birth"),
+                        resultSet.getDate("person.date_of_birth").toLocalDate(),
                         resultSet.getDouble("player.height"),
                         resultSet.getDouble("player.weight"),
                         resultSet.getInt("player.number")));

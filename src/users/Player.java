@@ -1,6 +1,6 @@
 package users;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 import objects.Person;
 
@@ -10,7 +10,7 @@ public class Player extends Person {
     private double weight;
     private int number;
 
-    public Player(String id, String name, String nationality, Date dateOfBirth, double height, double weight,
+    public Player(String id, String name, String nationality, LocalDate dateOfBirth, double height, double weight,
             int number) {
         super(id, name, nationality, dateOfBirth);
         this.height = height;

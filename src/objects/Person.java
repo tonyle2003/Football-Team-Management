@@ -1,19 +1,19 @@
 package objects;
 
-import java.sql.Date;
+import java.time.LocalDate;
 
 public class Person {
 
     private String id;
     private String name;
     private String nationality;
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
-    public Person(String id, String name, String nationality, Date dateOfBirth) {
+    public Person(String id, String name, String nationality, LocalDate dateOfBirth2) {
         this.id = id;
         this.name = name;
         this.nationality = nationality;
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = dateOfBirth2;
     }
 
     public String getId() {
@@ -40,11 +40,11 @@ public class Person {
         this.nationality = nationality;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
