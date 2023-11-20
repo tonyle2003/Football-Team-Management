@@ -72,7 +72,6 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             Calendar calendar = Calendar.getInstance();
             calendar.add(Calendar.YEAR, -age);
 
-            List<Player> players = new ArrayList<>();
             PreparedStatement statement = this.connection.prepareStatement(
                     "SELECT * FROM person JOINS player ON person.id=player.id" +
                             "WHERE player.height >= ? AND person.date_of_birth <= ?");
@@ -92,7 +91,9 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
                     resultSet.getDouble("player.weight"),
                     resultSet.getInt("player.number"));
                 int scored = goalDOB.findGoalOfPlayer(resultSet.getString("person.id"));
-                result.put(current, scored);
+                if (scored >= goal) {
+                    result.put(current, null);
+                }
             }
             return result;
         } catch (SQLException e) {
