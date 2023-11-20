@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import com.mysql.cj.xdevapi.Table;
 
+import dboperations.ClubDatabaseOperationImplementation;
 import dboperations.PlayerDatabaseOperationImplementation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -110,11 +111,24 @@ public class FootballManagementDashboardController implements Initializable {
     @FXML
     private TextField UpdatePlayersNumberTextField;
 
+
+    /*
+     * Remove
+     */
+
     @FXML
     private ObservableList<Player> playerlist;
 
     @FXML
     private TableView<Player> ListPlayerView;
+
+    @FXML
+    private Label myRemoveLabel;
+
+    @FXML
+    private ComboBox<String> ClubIdComboBox;
+
+    private String clubId;
 
     /*
      * Report
@@ -187,6 +201,9 @@ public class FootballManagementDashboardController implements Initializable {
         UpdatePlayersPane.setVisible(false);
         RemoveplayersPane.setVisible(true);
         HomePagePane.setVisible(false);
+        ClubDatabaseOperationImplementation reOp = new ClubDatabaseOperationImplementation();
+        ObservableList<String> clublist = FXCollections.observableArrayList(reOp.findAll());
+        ClubIdComboBox.setItems(clublist);
         PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null); 
         playerlist = FXCollections.observableArrayList(regOp.findAll());
         populateplayerlist();
@@ -235,12 +252,44 @@ public class FootballManagementDashboardController implements Initializable {
 
     @FXML
     private void handleRemovalReload(ActionEvent actionEvent){
-        
+        ClubIdComboBox.getSelectionModel().clearSelection();
+        ListPlayerView.getColumns().clear();
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null); 
+        playerlist = FXCollections.observableArrayList(regOp.findAll());
+        populateplayerlist();
     }
 
     @FXML
     private void handleRemovalplayers(ActionEvent actionEvent){
-        
+        myRemoveLabel.setText(null);
+
+        Player playerpicked = ListPlayerView.getSelectionModel().getSelectedItem();
+
+        if(playerpicked == null){
+            myRemoveLabel.setText("Please select a player to remove");
+            return;
+        }
+
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        int deletestatus = regOp.deletePLayerFromClubByPlayerId(playerpicked.getId(),clubId);
+        if(deletestatus == 1){
+            myRemoveLabel.setText("Player removed successfully");
+            playerlist.remove(playerpicked);
+            populateplayerlist();
+        }else{if(deletestatus == 0){
+            myRemoveLabel.setText("Statement failed to remove player");
+        }else{myRemoveLabel.setText("Player not removed");}}
+
+    }
+
+    @FXML
+    private void pickedClubComboBox(ActionEvent actionEvent){
+        ListPlayerView.getColumns().clear();
+        clubId = ClubIdComboBox.getSelectionModel().getSelectedItem();
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        playerlist = FXCollections.observableArrayList(regOp.findAllByClubId(clubId));
+        populateplayerlist();
+
     }
 
     void populateplayerlist(){

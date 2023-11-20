@@ -20,17 +20,14 @@ public class ClubDatabaseOperationImplementation implements ClubDatabaseOperatio
     }
 
     @Override
-    public List<Club> findAll() {
+    public List<String> findAll() {
         try {
             PreparedStatement statement = this.connection.prepareStatement(
                     "SELECT * FROM club");
             ResultSet resultSet = statement.executeQuery();
-            List<Club> clubs = new ArrayList<>();
+            List<String> clubs = new ArrayList<>();
             while (resultSet.next()) {
-                clubs.add(new Club(
-                        resultSet.getString("id"),
-                        resultSet.getString("name"),
-                        resultSet.getString("stadium")));
+                clubs.add(resultSet.getString("name"));
             }
             return clubs;
         } catch (SQLException e) {
