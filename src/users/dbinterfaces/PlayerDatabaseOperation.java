@@ -14,4 +14,5 @@ public interface PlayerDatabaseOperation {
     List<Player> findAllByClubId(String clubId);
     int deletePLayerFromClubByPlayerId(String playerId, String clubId);
     boolean insertPlayer(Player player);
+    boolean updatePlayerById(Player player);
 }

@@ -200,4 +200,32 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
         }
         return false;
     }
+
+    @Override
+    public boolean updatePlayerById(Player player) {
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(
+                    "UPDATE person JOIN player ON player.id = person.id" +
+                    "SET person.name=?, person.nationality=?, person.date_of_birth=?, player.height=?, player.weight=?, player.number=?" +
+                    "WHERE person.id=?");
+            statement.setString(1, player.getName());
+            statement.setString(2, player.getNationality());
+            statement.setDate(3, Date.valueOf(player.getDateOfBirth()));
+            statement.setDouble(4, player.getHeight());
+            statement.setDouble(5, player.getWeight());
+            statement.setInt(6, player.getNumber());
+            statement.setString(7, player.getId());
+            int rowEffected = statement.executeUpdate();
+            if (rowEffected == 1) {
+                connection.commit();
+                return true;
+            } else {
+                connection.rollback();
+                return false;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
