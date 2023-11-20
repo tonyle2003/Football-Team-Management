@@ -13,11 +13,9 @@ public class Main extends Application {
     @Override // Override the start method in the Application class
     public void start(Stage stage) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("gui/LoginUI.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/gui/FootballManagementDashboard.fxml"));
             Scene scene = new Scene(root);
 
-            // String css = this.getClass().getResource("application.css").toExternalForm();
-            // scene.getStylesheets().add(css);
             stage.setScene(scene);
             stage.show();
             
