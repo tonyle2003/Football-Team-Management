@@ -72,9 +72,6 @@ public class FootballManagementDashboardController implements Initializable {
     private DatePicker DatePickerImport;
 
     @FXML
-    private ComboBox<String> IdClubImportComboBox;
-
-    @FXML
     private TextField HeightImportTextField;
 
     @FXML
@@ -83,10 +80,16 @@ public class FootballManagementDashboardController implements Initializable {
     @FXML
     private TextField NumberImportTextField;
 
+    @FXML
+    private Label ImportLabel;
+
     /*
      * Update players
      */
 
+    @FXML
+    private ComboBox<String> updatePlayerComboBox;
+     
     @FXML
     private Label UpdatePlayersIdLabel;
 
@@ -111,12 +114,15 @@ public class FootballManagementDashboardController implements Initializable {
     @FXML
     private TextField UpdatePlayersNumberTextField;
 
+    private ObservableList<String> playeridlist;
+
+    @FXML
+    private Label UpdateLabel;
 
     /*
      * Remove
      */
 
-    @FXML
     private ObservableList<Player> playerlist;
 
     @FXML
@@ -176,6 +182,9 @@ public class FootballManagementDashboardController implements Initializable {
         UpdateImportPane.setVisible(false);
         UpdatePlayersPane.setVisible(false);
         RemoveplayersPane.setVisible(false);
+        ImportLabel.setText(null);
+        UpdateLabel.setText(null);
+        myRemoveLabel.setText(null);
     }
 
     @FXML
@@ -192,6 +201,23 @@ public class FootballManagementDashboardController implements Initializable {
         UpdatePlayersPane.setVisible(true);
         RemoveplayersPane.setVisible(false);
         HomePagePane.setVisible(false);
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        playeridlist = FXCollections.observableArrayList(regOp.getPlayerId());
+        updatePlayerComboBox.setItems(playeridlist);
+    }
+
+    @FXML
+    private void handlechooseplayer(ActionEvent actionEvent){
+        String playerid = updatePlayerComboBox.getSelectionModel().getSelectedItem();
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        Player player = regOp.findById(playerid);
+        UpdatePlayersIdLabel.setText(player.getId());
+        UpdatePlayersNameTextField.setText(player.getName());
+        UpdatePlayersNationalityTextField.setText(player.getNationality());
+        UpdatePlayersDatePicker.setValue(player.getDateOfBirth());
+        UpdatePlayersHeightTextField.setText(String.valueOf(player.getHeight()));
+        UpdatePlayersWeightTextField.setText(String.valueOf(player.getWeight()));
+        UpdatePlayersNumberTextField.setText(String.valueOf(player.getNumber()));
     }
 
     @FXML
@@ -211,8 +237,7 @@ public class FootballManagementDashboardController implements Initializable {
 
     @FXML
     private void handleImportnewPlayerButton(ActionEvent actionEvent){
-        /*
-         * String Id = IdimportTextField.getText();
+        String Id = IdimportTextField.getText();
         String Name = NameImportTextField.getText();
         String Nationality = NationalityTextField.getText();
         LocalDate dob = DatePickerImport.getValue();
@@ -221,9 +246,15 @@ public class FootballManagementDashboardController implements Initializable {
         Integer Number = Integer.parseInt(NumberImportTextField.getText());
 
         Player player = new Player(Id, Name, Nationality, dob, Height, Weight,Number); 
-         */
 
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        boolean insertstatus = regOp.insertPlayer(player);
 
+        if(insertstatus){
+            ImportLabel.setText("Player " + Name + " inserted successfully");
+        }else{
+            ImportLabel.setText("Failed to insert player " + Name);
+        }
 
     }
     
@@ -233,7 +264,6 @@ public class FootballManagementDashboardController implements Initializable {
         NameImportTextField.clear();
         NationalityTextField.clear();
         DatePickerImport.setValue(null);
-        IdClubImportComboBox.getSelectionModel().clearSelection();
         HeightImportTextField.clear();
         WeightImportTextField.clear();
         WeightImportTextField.clear();
@@ -242,12 +272,40 @@ public class FootballManagementDashboardController implements Initializable {
 
     @FXML
     private void handleUpdatePlayerButton(ActionEvent actionEvent){
+        String playerid = updatePlayerComboBox.getSelectionModel().getSelectedItem();
+        String Name = UpdatePlayersNameTextField.getText();
+        String Nationality = UpdatePlayersNationalityTextField.getText();
+        LocalDate dob = UpdatePlayersDatePicker.getValue();
+        Double Height = Double.parseDouble(UpdatePlayersHeightTextField.getText());
+        Double Weight = Double.parseDouble(UpdatePlayersWeightTextField.getText());
+        Integer Number = Integer.parseInt(UpdatePlayersNumberTextField.getText());
+
+        Player player = new Player(playerid, Name, Nationality, dob, Height, Weight,Number); 
         
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        boolean updatestatus = regOp.updatePlayerById(player,playerid);
+
+        if(updatestatus){
+            UpdateLabel.setText("Player " + Name + " updated successfully");
+        }else{
+            UpdateLabel.setText("Failed to update player " + Name);
+        }
+
+
     }
 
     @FXML
     private void handlResetPlayerButton(ActionEvent actionEvent){
-        
+        String playerid = updatePlayerComboBox.getSelectionModel().getSelectedItem();
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        Player player = regOp.findById(playerid);
+        UpdatePlayersIdLabel.setText(player.getId());
+        UpdatePlayersNameTextField.setText(player.getName());
+        UpdatePlayersNationalityTextField.setText(player.getNationality());
+        UpdatePlayersDatePicker.setValue(player.getDateOfBirth());
+        UpdatePlayersHeightTextField.setText(String.valueOf(player.getHeight()));
+        UpdatePlayersWeightTextField.setText(String.valueOf(player.getWeight()));
+        UpdatePlayersNumberTextField.setText(String.valueOf(player.getNumber()));
     }
 
     @FXML

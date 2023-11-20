@@ -202,7 +202,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
     }
 
     @Override
-    public boolean updatePlayerById(Player player) {
+    public boolean updatePlayerById(Player player, String id) {
         try {
             PreparedStatement statement = this.connection.prepareStatement(
                     "UPDATE person JOIN player ON player.id = person.id" +
@@ -227,5 +227,22 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             e.printStackTrace();
         }
         return false;
+    }
+
+    @Override
+    public List<String> getPlayerId() {
+        List<String> players = new ArrayList<>();
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(
+                    "SELECT person.id, person.name, person.nationality, person.date_of_birth, player.height, player.weight, player.number FROM player JOIN person ON person.id = player.id");
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                players.add(result.getString("person.id"));
+            }
+            return players;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return players;
     }
 }

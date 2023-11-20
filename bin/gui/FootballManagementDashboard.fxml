@@ -23,7 +23,7 @@
       <Line endX="16.0" layoutX="153.0" layoutY="137.0" startX="-119.0" />
       <Button layoutX="56.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleReportButton" prefHeight="38.0" prefWidth="77.0" stylesheets="@../styles/buttonnoboder.css" text="Report" />
       <Button layoutX="56.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="38.0" prefWidth="77.0" stylesheets="@../styles/buttonnoboder.css" text="Update" />
-      <AnchorPane fx:id="HomePagePane" disable="true" layoutX="200.0" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="862.0">
+      <AnchorPane fx:id="HomePagePane" layoutX="200.0" layoutY="39.0" prefHeight="607.0" prefWidth="862.0">
          <children>
             <Label layoutX="258.0" layoutY="259.0" prefHeight="47.0" prefWidth="353.0" text="Welcome To Football Management System">
                <font>
@@ -41,7 +41,7 @@
                   <Button layoutX="140.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleUpdateRemove" prefHeight="38.0" prefWidth="126.0" stylesheets="@../styles/buttonnoboder.css" text="Remove players" />
                </children>
             </HBox>
-            <AnchorPane fx:id="UpdateImportPane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="UpdateImportPane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
                <children>
                   <GridPane layoutX="197.0" layoutY="113.0" prefHeight="319.0" prefWidth="446.0">
                     <columnConstraints>
@@ -72,7 +72,7 @@
                         <Label prefHeight="35.0" prefWidth="108.0" stylesheets="@../styles/label.css" text="Height" GridPane.rowIndex="4" />
                         <Label prefHeight="35.0" prefWidth="111.0" stylesheets="@../styles/label.css" text="Weight" GridPane.rowIndex="5" />
                         <Label prefHeight="35.0" prefWidth="112.0" stylesheets="@../styles/label.css" text="Number" GridPane.rowIndex="6" />
-                        <TextField fx:id="IdimportTextField" alignment="CENTER" promptText="Id" GridPane.columnIndex="1">
+                        <TextField fx:id="IdimportTextField" alignment="CENTER" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
@@ -107,7 +107,7 @@
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
                         </TextField>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleImportnewPlayerButton" prefHeight="30.0" prefWidth="68.0" stylesheets="@../styles/buttonnoboder.css" text="Import" GridPane.columnIndex="1" GridPane.rowIndex="8">
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleImportnewPlayerButton" prefHeight="26.0" prefWidth="64.0" stylesheets="@../styles/buttonnoboder.css" text="Import" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <GridPane.margin>
                               <Insets left="60.0" right="50.0" />
                            </GridPane.margin>
@@ -119,9 +119,14 @@
                         </Button>
                      </children>
                   </GridPane>
+                  <Label fx:id="ImportLabel" layoutX="369.0" layoutY="446.0" prefHeight="26.0" prefWidth="220.0" text="Label">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="UpdatePlayersPane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="UpdatePlayersPane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
                <children>
                   <GridPane layoutX="197.0" layoutY="113.0" prefHeight="319.0" prefWidth="446.0">
                      <columnConstraints>
@@ -205,6 +210,12 @@
                         </Button>
                      </children>
                   </GridPane>
+                  <Label layoutX="198.0" layoutY="35.0" prefHeight="38.0" prefWidth="136.0" text="Choose player ">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="updatePlayerComboBox" layoutX="392.0" layoutY="38.0" onAction="#handlechooseplayer" prefHeight="35.0" prefWidth="160.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="RemoveplayersPane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
@@ -221,9 +232,14 @@
                   <Button layoutX="197.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleRemovalReload" prefHeight="30.0" prefWidth="77.0" stylesheets="@../styles/buttonnoboder.css" text="Reload" />
                </children>
             </AnchorPane>
+            <Label fx:id="UpdateLabel" layoutX="365.0" layoutY="500.0" prefHeight="30.0" prefWidth="234.0" text="Label">
+               <font>
+                  <Font size="16.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="ReportAnchorPane" disable="true" layoutX="199.0" opacity="0.0" prefHeight="624.0" prefWidth="862.0">
+      <AnchorPane fx:id="ReportAnchorPane" layoutX="199.0" prefHeight="624.0" prefWidth="862.0">
          <children>
             <HBox layoutX="3.0" prefHeight="38.0" prefWidth="255.0">
                <children>
