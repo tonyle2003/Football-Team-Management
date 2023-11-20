@@ -79,17 +79,17 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             statement.setDate(2, new Date(calendar.getTime().getTime()));
 
             ResultSet resultSet = statement.executeQuery();
-            GoalDatabaseOperation goalDOB = new GoalDatabaseOperationImplementation(this.connection);
+            GoalDatabaseOperation goalDOB = new GoalDatabaseOperationImplementation();
             Map<Player, Integer> result = new HashMap<>();
             while (resultSet.next()) {
                 Player current = new Player(
-                    resultSet.getString("person.id"),
-                    resultSet.getString("person.name"),
-                    resultSet.getString("person.nationality"),
-                    resultSet.getDate("person.date_of_birth"),
-                    resultSet.getDouble("player.height"), 
-                    resultSet.getDouble("player.weight"),
-                    resultSet.getInt("player.number"));
+                        resultSet.getString("person.id"),
+                        resultSet.getString("person.name"),
+                        resultSet.getString("person.nationality"),
+                        resultSet.getDate("person.date_of_birth"),
+                        resultSet.getDouble("player.height"),
+                        resultSet.getDouble("player.weight"),
+                        resultSet.getInt("player.number"));
                 int scored = goalDOB.findGoalOfPlayer(resultSet.getString("person.id"));
                 if (scored >= goal) {
                     result.put(current, scored);
@@ -125,4 +125,49 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
         return null;
     }
 
+    @Override
+    public List<Player> findAllByClubId(String clubId) {
+        try {
+            PreparedStatement statement = this.connection
+                    .prepareStatement(
+                            "SELECT * FROM player JOINS person ON person.id = player.id WHERE player.id_club=?");
+            statement.setString(1, clubId);
+            List<Player> players = new ArrayList<>();
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                players.add(new Player(resultSet.getString("person.id"),
+                        resultSet.getString("person.name"),
+                        resultSet.getString("person.nationality"),
+                        resultSet.getDate("person.date_of_birth"),
+                        resultSet.getDouble("player.height"),
+                        resultSet.getDouble("player.weight"),
+                        resultSet.getInt("player.number")));
+            }
+            return players;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    @Override
+    public int deletePLayerFromClubByPlayerId(String playerId, String clubId) {
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(
+                    "UPDATE player SET id_club=null WHERE id=? AND id_club=?");
+            statement.setString(1, playerId);
+            statement.setString(2, clubId);
+            int rowEffected = statement.executeUpdate();
+            if (rowEffected == 1) {
+                connection.commit();
+                return 1;
+            } else {
+                connection.rollback();
+                return 0;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return -1;
+    }
 }

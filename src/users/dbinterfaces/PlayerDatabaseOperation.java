@@ -11,4 +11,6 @@ public interface PlayerDatabaseOperation {
     Player findById(String id);
     String findPlayerNameById(String playerId);
     Map<Player, Integer> findByAgeAndHeightAndNumberOfGoal(int age, double height, int goal);
+    List<Player> findAllByClubId(String clubId);
+    int deletePLayerFromClubByPlayerId(String playerId, String clubId);
 }

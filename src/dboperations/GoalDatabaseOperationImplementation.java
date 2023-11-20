@@ -12,7 +12,7 @@ public class GoalDatabaseOperationImplementation implements GoalDatabaseOperatio
 
     private Connection connection;
 
-    public GoalDatabaseOperationImplementation(Connection connection) {
+    public GoalDatabaseOperationImplementation() {
         this.connection = DBConnection.getConnection();
     }
 
