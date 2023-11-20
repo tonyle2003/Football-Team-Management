@@ -7,5 +7,5 @@ import users.Player;
 public interface PlayerDatabaseOperation {
 
     List<Player> findAll();
-    
+    String findPlayerNameById(String playerId);
 }

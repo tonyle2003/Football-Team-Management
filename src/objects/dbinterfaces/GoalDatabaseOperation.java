@@ -1,9 +1,9 @@
 package objects.dbinterfaces;
 
-import java.sql.Date;
+import java.util.Map;
 
 public interface GoalDatabaseOperation {
     
-    int findGoalOfPlayerInSeason(String playerId, Date date);
+    int findGoalOfPlayerInSeason(String playerId, String season);
     int findGoalOfPlayer(String playerId);
 }

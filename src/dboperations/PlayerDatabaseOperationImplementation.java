@@ -43,4 +43,23 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
         return players;
     }
 
+    @Override
+    public String findPlayerNameById(String playerId) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                "SELECT name from person WHERE person.id=?"  
+            );
+            statement.setString(1, playerId);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return result.getString(1);
+            } else {
+                return "";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 }
