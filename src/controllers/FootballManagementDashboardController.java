@@ -1,18 +1,38 @@
 package controllers;
 
 import java.net.URL;
+import java.sql.Date;
+import java.sql.SQLException;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.ResourceBundle;
 
+import com.mysql.cj.xdevapi.Table;
+
+import dboperations.PlayerDatabaseOperationImplementation;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
+import javafx.scene.control.PasswordField;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 import users.Player;
+import users.dbinterfaces.PlayerDatabaseOperation;
 
 public class FootballManagementDashboardController implements Initializable {
 
@@ -42,7 +62,7 @@ public class FootballManagementDashboardController implements Initializable {
     private TextField IdimportTextField;
 
     @FXML
-    private TextField NameimportTextField;
+    private TextField NameImportTextField;
 
     @FXML
     private TextField NationalityTextField;
@@ -89,6 +109,9 @@ public class FootballManagementDashboardController implements Initializable {
 
     @FXML
     private TextField UpdatePlayersNumberTextField;
+
+    @FXML
+    private ObservableList<Player> playerlist;
 
     @FXML
     private TableView<Player> ListPlayerView;
@@ -159,20 +182,45 @@ public class FootballManagementDashboardController implements Initializable {
 
     @FXML
     private void handleUpdateRemove(ActionEvent actionEvent){
+        ListPlayerView.getColumns().clear();
         UpdateImportPane.setVisible(false);
         UpdatePlayersPane.setVisible(false);
         RemoveplayersPane.setVisible(true);
         HomePagePane.setVisible(false);
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null); 
+        playerlist = FXCollections.observableArrayList(regOp.findAll());
+        populateplayerlist();
     }
 
     @FXML
     private void handleImportnewPlayerButton(ActionEvent actionEvent){
-        
+        /*
+         * String Id = IdimportTextField.getText();
+        String Name = NameImportTextField.getText();
+        String Nationality = NationalityTextField.getText();
+        LocalDate dob = DatePickerImport.getValue();
+        Double Height = Double.parseDouble(HeightImportTextField.getText());
+        Double Weight = Double.parseDouble(WeightImportTextField.getText());
+        Integer Number = Integer.parseInt(NumberImportTextField.getText());
+
+        Player player = new Player(Id, Name, Nationality, dob, Height, Weight,Number); 
+         */
+
+
+
     }
     
     @FXML
     private void handlResetnewPlayerButton(ActionEvent actionEvent){
-        
+        IdimportTextField.clear();
+        NameImportTextField.clear();
+        NationalityTextField.clear();
+        DatePickerImport.setValue(null);
+        IdClubImportComboBox.getSelectionModel().clearSelection();
+        HeightImportTextField.clear();
+        WeightImportTextField.clear();
+        WeightImportTextField.clear();
+        NumberImportTextField.clear(); 
     }
 
     @FXML
@@ -194,6 +242,50 @@ public class FootballManagementDashboardController implements Initializable {
     private void handleRemovalplayers(ActionEvent actionEvent){
         
     }
+
+    void populateplayerlist(){
+        TableColumn<Player, String> idColumn = new TableColumn<>("ID");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.setMinWidth(40);
+        idColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameColumn.setMinWidth(180);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, String> nationalityColumn = new TableColumn<>("Nationality");
+        nationalityColumn.setCellValueFactory(new PropertyValueFactory<>("nationality"));
+        nationalityColumn.setMinWidth(140);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Date> dobColumn = new TableColumn<>("Date of birth");
+        dobColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        dobColumn.setMinWidth(180);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Double> heightColumn = new TableColumn<>("Height");
+        heightColumn.setCellValueFactory(new PropertyValueFactory<>("height"));
+        heightColumn.setMinWidth(100);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Double> weightColumn = new TableColumn<>("Weight");
+        weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        weightColumn.setMinWidth(100);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Integer> numberColumn = new TableColumn<>("Number");
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+        numberColumn.setMinWidth(100);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        ListPlayerView.setItems(playerlist);
+        ListPlayerView.setStyle("-fx-font-size: 18px");
+        ListPlayerView.getColumns().addAll(idColumn,nameColumn,nationalityColumn,dobColumn,heightColumn,weightColumn,numberColumn);
+
+        
+    }
+
 
     /*
      * Report

@@ -3,7 +3,6 @@
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
@@ -41,7 +40,7 @@
                   <Button layoutX="140.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleUpdateRemove" prefHeight="38.0" prefWidth="126.0" stylesheets="@../styles/buttonnoboder.css" text="Remove players" />
                </children>
             </HBox>
-            <AnchorPane fx:id="UpdateImportPane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="UpdateImportPane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="856.0">
                <children>
                   <GridPane layoutX="197.0" layoutY="113.0" prefHeight="319.0" prefWidth="446.0">
                     <columnConstraints>
@@ -49,7 +48,6 @@
                       <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="336.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -70,11 +68,10 @@
                            </stylesheets>
                         </Label>
                         <Label prefHeight="35.0" prefWidth="134.0" stylesheets="@../styles/label.css" text="Date of birth" GridPane.rowIndex="3" />
-                        <Label prefHeight="35.0" prefWidth="108.0" stylesheets="@../styles/label.css" text="ID club" GridPane.rowIndex="4" />
-                        <Label prefHeight="35.0" prefWidth="108.0" stylesheets="@../styles/label.css" text="Height" GridPane.rowIndex="5" />
-                        <Label prefHeight="35.0" prefWidth="111.0" stylesheets="@../styles/label.css" text="Weight" GridPane.rowIndex="6" />
-                        <Label prefHeight="35.0" prefWidth="112.0" stylesheets="@../styles/label.css" text="Number" GridPane.rowIndex="7" />
-                        <TextField fx:id="IdimportTextField" GridPane.columnIndex="1">
+                        <Label prefHeight="35.0" prefWidth="108.0" stylesheets="@../styles/label.css" text="Height" GridPane.rowIndex="4" />
+                        <Label prefHeight="35.0" prefWidth="111.0" stylesheets="@../styles/label.css" text="Weight" GridPane.rowIndex="5" />
+                        <Label prefHeight="35.0" prefWidth="112.0" stylesheets="@../styles/label.css" text="Number" GridPane.rowIndex="6" />
+                        <TextField fx:id="IdimportTextField" alignment="CENTER" promptText="Id" GridPane.columnIndex="1">
                            <GridPane.margin>
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
@@ -89,37 +86,32 @@
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="HeightImportTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets left="80.0" right="80.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="WeightImportTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets left="80.0" right="80.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="NumberImportTextField" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                           <GridPane.margin>
-                              <Insets left="80.0" right="80.0" />
-                           </GridPane.margin>
-                        </TextField>
                         <DatePicker fx:id="DatePickerImport" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
                         </DatePicker>
-                        <ComboBox fx:id="IdClubImportComboBox" prefHeight="26.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="HeightImportTextField" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
-                        </ComboBox>
-                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleImportnewPlayerButton" prefHeight="30.0" prefWidth="68.0" stylesheets="@../styles/buttonnoboder.css" text="Import" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        </TextField>
+                        <TextField fx:id="WeightImportTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="80.0" right="80.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="NumberImportTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="80.0" right="80.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Button alignment="CENTER" mnemonicParsing="false" onAction="#handleImportnewPlayerButton" prefHeight="30.0" prefWidth="68.0" stylesheets="@../styles/buttonnoboder.css" text="Import" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <GridPane.margin>
                               <Insets left="60.0" right="50.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#handlResetnewPlayerButton" stylesheets="@../styles/buttonnoboder.css" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        <Button mnemonicParsing="false" onAction="#handlResetnewPlayerButton" stylesheets="@../styles/buttonnoboder.css" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <GridPane.margin>
                               <Insets left="220.0" />
                            </GridPane.margin>
@@ -128,7 +120,7 @@
                   </GridPane>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="UpdatePlayersPane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="UpdatePlayersPane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="856.0">
                <children>
                   <GridPane layoutX="197.0" layoutY="113.0" prefHeight="319.0" prefWidth="446.0">
                      <columnConstraints>
@@ -136,7 +128,6 @@
                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="336.0" minWidth="10.0" prefWidth="336.0" />
                      </columnConstraints>
                      <rowConstraints>
-                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
@@ -157,10 +148,9 @@
                            </stylesheets>
                         </Label>
                         <Label prefHeight="35.0" prefWidth="134.0" stylesheets="@../styles/label.css" text="Date of birth" GridPane.rowIndex="3" />
-                        <Label prefHeight="35.0" prefWidth="108.0" stylesheets="@../styles/label.css" text="ID club" GridPane.rowIndex="4" />
-                        <Label prefHeight="35.0" prefWidth="108.0" stylesheets="@../styles/label.css" text="Height" GridPane.rowIndex="5" />
-                        <Label prefHeight="35.0" prefWidth="111.0" stylesheets="@../styles/label.css" text="Weight" GridPane.rowIndex="6" />
-                        <Label prefHeight="35.0" prefWidth="112.0" stylesheets="@../styles/label.css" text="Number" GridPane.rowIndex="7" />
+                        <Label prefHeight="35.0" prefWidth="108.0" stylesheets="@../styles/label.css" text="Height" GridPane.rowIndex="4" />
+                        <Label prefHeight="35.0" prefWidth="111.0" stylesheets="@../styles/label.css" text="Weight" GridPane.rowIndex="5" />
+                        <Label prefHeight="35.0" prefWidth="112.0" stylesheets="@../styles/label.css" text="Number" GridPane.rowIndex="6" />
                         <Label fx:id="UpdatePlayersIdLabel" prefHeight="25.0" prefWidth="176.0" GridPane.columnIndex="1">
                            <padding>
                               <Insets left="80.0" right="80.0" />
@@ -182,37 +172,32 @@
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
                         </TextField>
-                        <TextField fx:id="UpdatePlayersHeightTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
-                           <GridPane.margin>
-                              <Insets left="80.0" right="80.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="UpdatePlayersWeightTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
-                           <GridPane.margin>
-                              <Insets left="80.0" right="80.0" />
-                           </GridPane.margin>
-                        </TextField>
-                        <TextField fx:id="UpdatePlayersNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="7">
-                           <GridPane.margin>
-                              <Insets left="80.0" right="80.0" />
-                           </GridPane.margin>
-                        </TextField>
                         <DatePicker fx:id="UpdatePlayersDatePicker" GridPane.columnIndex="1" GridPane.rowIndex="3">
                            <GridPane.margin>
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
                         </DatePicker>
-                        <ComboBox fx:id="UpdatePlayersIDclubCombobox" prefHeight="26.0" prefWidth="183.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                        <TextField fx:id="UpdatePlayersHeightTextField" GridPane.columnIndex="1" GridPane.rowIndex="4">
                            <GridPane.margin>
                               <Insets left="80.0" right="80.0" />
                            </GridPane.margin>
-                        </ComboBox>
-                        <Button alignment="CENTER" minWidth="47.0" mnemonicParsing="false" onAction="#handleUpdatePlayerButton" prefHeight="30.0" prefWidth="69.0" stylesheets="@../styles/buttonnoboder.css" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        </TextField>
+                        <TextField fx:id="UpdatePlayersWeightTextField" GridPane.columnIndex="1" GridPane.rowIndex="5">
+                           <GridPane.margin>
+                              <Insets left="80.0" right="80.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <TextField fx:id="UpdatePlayersNumberTextField" GridPane.columnIndex="1" GridPane.rowIndex="6">
+                           <GridPane.margin>
+                              <Insets left="80.0" right="80.0" />
+                           </GridPane.margin>
+                        </TextField>
+                        <Button alignment="CENTER" minWidth="47.0" mnemonicParsing="false" onAction="#handleUpdatePlayerButton" prefHeight="30.0" prefWidth="69.0" stylesheets="@../styles/buttonnoboder.css" text="Update" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <GridPane.margin>
                               <Insets left="60.0" right="50.0" />
                            </GridPane.margin>
                         </Button>
-                        <Button mnemonicParsing="false" onAction="#handlResetPlayerButton" stylesheets="@../styles/buttonnoboder.css" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="9">
+                        <Button mnemonicParsing="false" onAction="#handlResetPlayerButton" stylesheets="@../styles/buttonnoboder.css" text="Reset" GridPane.columnIndex="1" GridPane.rowIndex="8">
                            <GridPane.margin>
                               <Insets left="220.0" />
                            </GridPane.margin>
@@ -223,7 +208,7 @@
             </AnchorPane>
             <AnchorPane fx:id="RemoveplayersPane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
                <children>
-                  <Label alignment="CENTER" layoutX="364.0" layoutY="66.0" prefHeight="35.0" prefWidth="130.0" text="Player list">
+                  <Label alignment="CENTER" layoutX="281.0" layoutY="30.0" prefHeight="35.0" prefWidth="255.0" text="Player list">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -236,7 +221,7 @@
             </AnchorPane>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="ReportAnchorPane" layoutX="199.0" prefHeight="624.0" prefWidth="862.0">
+      <AnchorPane fx:id="ReportAnchorPane" disable="true" layoutX="199.0" opacity="0.0" prefHeight="624.0" prefWidth="862.0">
          <children>
             <HBox layoutX="3.0" prefHeight="38.0" prefWidth="255.0">
                <children>
@@ -267,7 +252,7 @@
             </AnchorPane>
             <AnchorPane fx:id="Report3Pane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
                <children>
-                  <TableView fx:id="Report3TableView" layoutX="25.0" layoutY="91.0" prefHeight="364.0" prefWidth="810.0" />
+                  <TableView fx:id="Report3TableView" layoutX="25.0" layoutY="101.0" prefHeight="334.0" prefWidth="810.0" />
                   <Label alignment="CENTER" layoutX="156.0" layoutY="22.0" prefHeight="47.0" prefWidth="567.0" text="Label">
                      <font>
                         <Font size="20.0" />
