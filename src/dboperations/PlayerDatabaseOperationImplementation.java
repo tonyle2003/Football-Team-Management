@@ -170,4 +170,34 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
         }
         return -1;
     }
+
+    @Override
+    public boolean insertPlayer(Player player) {
+        try {
+            PreparedStatement statement = this.connection.prepareStatement(
+                "INSERT INTO person VALUES(?,?,?,?);" +
+                "INSERT INTO player(id, height, weight, number) VALUES(?,?,?,?)");
+            statement.setString(1, player.getId());
+            statement.setString(2, player.getName());
+            statement.setString(3, player.getNationality());
+            statement.setDate(4, Date.valueOf(player.getDateOfBirth()));
+            statement.setString(5, player.getId());
+            statement.setDouble(6, player.getHeight());
+            statement.setDouble(7, player.getWeight());
+            statement.setInt(8, player.getNumber());
+
+            int rowEffected = statement.executeUpdate();
+            if (rowEffected == 1) {
+                connection.commit();
+                return true;
+            } else {
+                connection.rollback();
+                return false;
+            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 }
