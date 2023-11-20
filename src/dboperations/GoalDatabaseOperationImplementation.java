@@ -39,11 +39,11 @@ public class GoalDatabaseOperationImplementation implements GoalDatabaseOperatio
         try {
             PreparedStatement statement = this.connection.prepareStatement(
                 "SELECT COUNT(goal.id) as scored FROM football_competition" +
-                "JOINS match ON football_competition.id = match.id_competition" + 
-                "JOINS goal ON goal.id_match = match.id" +
-                "JOINS player ON player.id = goal.id_player" + 
-                "WHERE goal.id_player=? AND football_competition.id=?" +
-                "GROUP BY football_competition.id"  
+                "JOIN match ON football_competition.id = match.id_competition" + 
+                "JOIN goal ON goal.id_match = match.id" +
+                "JOIN player ON player.id = goal.id_player" + 
+                "WHERE goal.id_player=? AND football_competition.id=? AND goal.goal_type != 'OG'" +
+                "GROUP BY football_competition.id"
             );
             statement.setString(1, playerId);
             statement.setString(2, season);

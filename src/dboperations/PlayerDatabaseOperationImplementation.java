@@ -29,7 +29,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
         List<Player> players = new ArrayList<>();
         try {
             PreparedStatement statement = this.connection.prepareStatement(
-                    "SELECT * FROM player JOINS person ON person.id = player.id");
+                    "SELECT person.id, person.name, person.nationality, person.date_of_birth, player.height, player.weight, player.number FROM player JOIN person ON person.id = player.id");
             ResultSet result = statement.executeQuery();
             while (result.next()) {
                 players.add(new Player(
@@ -73,7 +73,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             calendar.add(Calendar.YEAR, -age);
 
             PreparedStatement statement = this.connection.prepareStatement(
-                    "SELECT * FROM person JOINS player ON person.id=player.id" +
+                    "SELECT * FROM person JOIN player ON person.id=player.id" +
                             "WHERE player.height >= ? AND person.date_of_birth <= ?");
             statement.setDouble(1, height);
             statement.setDate(2, new Date(calendar.getTime().getTime()));
@@ -106,7 +106,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
     public Player findById(String id) {
         try {
             PreparedStatement statement = this.connection.prepareStatement(
-                    "SELECT * FROM person JOINS player ON person.id = player.id WHERE person.id=?");
+                    "SELECT * FROM person JOIN player ON person.id = player.id WHERE person.id=?");
             statement.setString(1, id);
             ResultSet resultSet = statement.executeQuery();
             if (resultSet.next()) {
@@ -130,7 +130,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
         try {
             PreparedStatement statement = this.connection
                     .prepareStatement(
-                            "SELECT * FROM player JOINS person ON person.id = player.id WHERE player.id_club=?");
+                            "SELECT * FROM player JOIN person ON person.id = player.id WHERE player.id_club=?");
             statement.setString(1, clubId);
             List<Player> players = new ArrayList<>();
             ResultSet resultSet = statement.executeQuery();
