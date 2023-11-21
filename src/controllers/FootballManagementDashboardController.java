@@ -386,11 +386,6 @@ public class FootballManagementDashboardController implements Initializable {
         Map<Player,Integer> playermap = regOp.findByAgeAndHeightAndNumberOfGoal(age, height, goals);
         Set<Player> players = playermap.keySet();
         ObservableList<Player> playerlist = FXCollections.observableArrayList(players);
-        List<SumGoal> goal2 = new ArrayList<>();
-        for(Player player:playermap.keySet()){
-            goal2.add(new SumGoal(playermap.get(player),player.getId()));
-        }
-        goalslist = FXCollections.observableArrayList(goal2);
         populateplayerlistbygoal();
     }
 
@@ -488,13 +483,14 @@ public class FootballManagementDashboardController implements Initializable {
         numberColumn.setMinWidth(100);
         nameColumn.setStyle("-fx-alignment: center;");
 
-        ListPlayerView.setItems(playerlist);
-        ListPlayerView.setStyle("-fx-font-size: 18px");
-        ListPlayerView.getColumns().addAll(idColumn,nameColumn,nationalityColumn,dobColumn,heightColumn,weightColumn,numberColumn);
+        TableColumn<Player, Integer> goalColumn = new TableColumn<>("Number of goals");
+        goalColumn.setCellValueFactory(new PropertyValueFactory<>("sumgoal"));
+        goalColumn.setMinWidth(100);
+        goalColumn.setStyle("-fx-alignment: center;");
 
-        TableColumn<Player, Integer> goalsColumn = new TableColumn<>("Goals");
-        goalsColumn.setCellValueFactory(new PropertyValueFactory<>("sumGoal"));
-        Report1TableView.getColumns().add(goalsColumn);
+        Report1TableView.setItems(playerlist);
+        Report1TableView.setStyle("-fx-font-size: 18px");
+        Report1TableView.getColumns().addAll(idColumn,nameColumn,nationalityColumn,dobColumn,heightColumn,weightColumn,numberColumn,goalColumn);
     }
 
 
