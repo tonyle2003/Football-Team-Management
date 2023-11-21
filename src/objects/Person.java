@@ -8,7 +8,6 @@ public class Person {
     private String name;
     private String nationality;
     private LocalDate dateOfBirth;
-    private int sumOfGoal;
 
     public Person(String id, String name, String nationality, LocalDate dateOfBirth2) {
         this.id = id;
@@ -47,14 +46,6 @@ public class Person {
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
-    }
-
-    public int getSumOfGoal() {
-        return sumOfGoal;
-    }
-
-    public void setSumOfGoal(int sumOfGoal) {
-        this.sumOfGoal = sumOfGoal;
     }
 
 }
