@@ -34,7 +34,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="UpdateAnchorPane" layoutX="203.0" prefHeight="646.0" prefWidth="856.0">
+      <AnchorPane fx:id="UpdateAnchorPane" disable="true" layoutX="203.0" opacity="0.0" prefHeight="646.0" prefWidth="856.0">
          <children>
             <HBox prefHeight="38.0" prefWidth="393.0">
                <children>
@@ -250,7 +250,7 @@
                   <Button layoutX="140.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleReport3Button" prefHeight="38.0" prefWidth="79.0" stylesheets="@../styles/buttonnoboder.css" text="Report 3" />
                </children>
             </HBox>
-            <AnchorPane fx:id="Report1Pane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="Report1Pane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="856.0">
                <children>
                   <Label alignment="CENTER" layoutX="60.0" layoutY="22.0" prefHeight="47.0" prefWidth="234.0" text="Find players by statistics ">
                      <font>
@@ -264,10 +264,10 @@
                   <TableView fx:id="Report1TableView" layoutX="25.0" layoutY="91.0" prefHeight="364.0" prefWidth="810.0" />
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="Report2Pane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="Report2Pane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
                <children>
                   <TableView fx:id="Report2TableView" layoutX="25.0" layoutY="91.0" prefHeight="364.0" prefWidth="810.0" />
-                  <ComboBox layoutX="494.0" layoutY="33.0" prefHeight="30.0" prefWidth="160.0" />
+                  <ComboBox fx:id="PickCompetitionCombobox" layoutX="494.0" layoutY="33.0" onAction="#HandlePickCompetitionCombobox" prefHeight="30.0" prefWidth="160.0" />
                   <Label alignment="CENTER" layoutX="156.0" layoutY="22.0" prefHeight="47.0" prefWidth="324.0" text="List of Top Goal Scorer by season">
                      <font>
                         <Font size="20.0" />

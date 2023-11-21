@@ -6,4 +6,5 @@ import users.FootballCompetition;
 
 public interface FootballCompetitionDatabaseOperation {
     List<FootballCompetition> findAll();
+    
 }

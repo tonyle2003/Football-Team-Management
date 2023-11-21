@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dboperations.ClubDatabaseOperationImplementation;
+import dboperations.FootballCompetitionDatabaseOperationImplementation;
+import dboperations.GoalDatabaseOperationImplementation;
 import dboperations.PlayerDatabaseOperationImplementation;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -25,6 +27,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import objects.SumGoal;
+import users.FootballCompetition;
 import users.Player;
 
 public class FootballManagementDashboardController implements Initializable {
@@ -160,6 +163,11 @@ public class FootballManagementDashboardController implements Initializable {
     private TextField GoalsLabel;
 
     private ObservableList<SumGoal> goalslist;
+
+    @FXML
+    private ComboBox<String> PickCompetitionCombobox;
+
+    private ObservableList<FootballCompetition> competitionlist;
 
 
     @Override
@@ -338,7 +346,7 @@ public class FootballManagementDashboardController implements Initializable {
             playerlist.remove(playerpicked);
             populateplayerlist();
         }else{if(deletestatus == 0){
-            myRemoveLabel.setText("Statement failed to remove player");
+            myRemoveLabel.setText("Player not in club to remove");
         }else{myRemoveLabel.setText("Player not removed");}}
 
     }
@@ -355,54 +363,6 @@ public class FootballManagementDashboardController implements Initializable {
         populateplayerlist();
     }
 
-    /*
-     * Report
-     */
-
-    @FXML
-    private void handleReportButton(ActionEvent actionEvent){
-        UpdateAnchorPane.setVisible(false);
-        ReportAnchorPane.setVisible(true);
-        Report1Pane.setVisible(false);
-        Report2Pane.setVisible(false);
-        Report3Pane.setVisible(false);
-    }
-
-    @FXML
-    private void handleReport1Button(ActionEvent actionEvent){
-        Report1Pane.setVisible(true);
-        Report2Pane.setVisible(false);
-        Report3Pane.setVisible(false);
-        Report1TableView.getColumns().clear();
-    }
-
-    @FXML
-    private void handleFilterAction(ActionEvent actionEvent){
-        int age = Integer.parseInt(AgeLabel.getText());
-        double height = Double.parseDouble(HeightLabel.getText());
-        int goals = Integer.parseInt(GoalsLabel.getText());
-        Report1TableView.getColumns().clear();
-        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
-        Map<Player,Integer> playermap = regOp.findByAgeAndHeightAndNumberOfGoal(age, height, goals);
-        Set<Player> players = playermap.keySet();
-        ObservableList<Player> playerlist = FXCollections.observableArrayList(players);
-        populateplayerlistbygoal();
-    }
-
-    @FXML
-    private void handleReport2Button(ActionEvent actionEvent){
-        Report1Pane.setVisible(false);
-        Report2Pane.setVisible(true);
-        Report3Pane.setVisible(false);
-
-    }
-
-    @FXML
-    private void handleReport3Button(ActionEvent actionEvent){
-        Report1Pane.setVisible(false);
-        Report2Pane.setVisible(false);
-        Report3Pane.setVisible(true);
-    }
 
     void populateplayerlist(){
         TableColumn<Player, String> idColumn = new TableColumn<>("ID");
@@ -447,6 +407,63 @@ public class FootballManagementDashboardController implements Initializable {
         
     }
 
+    /*
+     * Report
+     */
+
+    @FXML
+    private void handleReportButton(ActionEvent actionEvent){
+        UpdateAnchorPane.setVisible(false);
+        ReportAnchorPane.setVisible(true);
+        Report1Pane.setVisible(false);
+        Report2Pane.setVisible(false);
+        Report3Pane.setVisible(false);
+    }
+
+    @FXML
+    private void handleReport1Button(ActionEvent actionEvent){
+        Report1Pane.setVisible(true);
+        Report2Pane.setVisible(false);
+        Report3Pane.setVisible(false);
+        Report1TableView.getColumns().clear();
+    }
+
+    @FXML
+    private void handleFilterAction(ActionEvent actionEvent){
+        int age = Integer.parseInt(AgeLabel.getText());
+        double height = Double.parseDouble(HeightLabel.getText());
+        int goals = Integer.parseInt(GoalsLabel.getText());
+        Report1TableView.getColumns().clear();
+        PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        Map<Player,Integer> playermap = regOp.findByAgeAndHeightAndNumberOfGoal(age, height, goals);
+        Set<Player> players = playermap.keySet();
+        playerlist = FXCollections.observableArrayList(players);
+        populateplayerlistbygoal();
+    }
+
+    @FXML
+    private void handleReport2Button(ActionEvent actionEvent){
+        Report1Pane.setVisible(false);
+        Report2Pane.setVisible(true);
+        Report3Pane.setVisible(false);
+        Report2TableView.getColumns().clear();
+        FootballCompetitionDatabaseOperationImplementation regOp = new FootballCompetitionDatabaseOperationImplementation();
+        competitionlist = FXCollections.observableArrayList(regOp.findAll());
+        ObservableList<String> competitionlistName = FXCollections.observableArrayList();
+        for(int i = 0; i < competitionlist.size(); i++){
+            competitionlistName.add(competitionlist.get(i).getName());
+        }
+        PickCompetitionCombobox.setItems(competitionlistName);
+
+    }
+
+    @FXML
+    private void handleReport3Button(ActionEvent actionEvent){
+        Report1Pane.setVisible(false);
+        Report2Pane.setVisible(false);
+        Report3Pane.setVisible(true);
+    }
+
     void populateplayerlistbygoal(){
         TableColumn<Player, String> idColumn = new TableColumn<>("ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -460,40 +477,104 @@ public class FootballManagementDashboardController implements Initializable {
 
         TableColumn<Player, String> nationalityColumn = new TableColumn<>("Nationality");
         nationalityColumn.setCellValueFactory(new PropertyValueFactory<>("nationality"));
-        nationalityColumn.setMinWidth(140);
+        nationalityColumn.setMinWidth(110);
         nameColumn.setStyle("-fx-alignment: center;");
 
         TableColumn<Player, Date> dobColumn = new TableColumn<>("Date of birth");
         dobColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        dobColumn.setMinWidth(180);
+        dobColumn.setMinWidth(120);
         nameColumn.setStyle("-fx-alignment: center;");
 
         TableColumn<Player, Double> heightColumn = new TableColumn<>("Height");
         heightColumn.setCellValueFactory(new PropertyValueFactory<>("height"));
-        heightColumn.setMinWidth(100);
+        heightColumn.setMinWidth(70);
         nameColumn.setStyle("-fx-alignment: center;");
 
         TableColumn<Player, Double> weightColumn = new TableColumn<>("Weight");
         weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
-        weightColumn.setMinWidth(100);
+        weightColumn.setMinWidth(70);
         nameColumn.setStyle("-fx-alignment: center;");
 
         TableColumn<Player, Integer> numberColumn = new TableColumn<>("Number");
         numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
-        numberColumn.setMinWidth(100);
+        numberColumn.setMinWidth(70);
         nameColumn.setStyle("-fx-alignment: center;");
 
         TableColumn<Player, Integer> goalColumn = new TableColumn<>("Number of goals");
-        goalColumn.setCellValueFactory(new PropertyValueFactory<>("sumgoal"));
-        goalColumn.setMinWidth(100);
+        goalColumn.setCellValueFactory(new PropertyValueFactory<>("sumOfGoal"));
+        goalColumn.setMinWidth(150);
         goalColumn.setStyle("-fx-alignment: center;");
 
         Report1TableView.setItems(playerlist);
-        Report1TableView.setStyle("-fx-font-size: 18px");
+        Report1TableView.setStyle("-fx-font-size: 16px");
         Report1TableView.getColumns().addAll(idColumn,nameColumn,nationalityColumn,dobColumn,heightColumn,weightColumn,numberColumn,goalColumn);
     }
 
+    @FXML
+    private void HandlePickCompetitionCombobox(ActionEvent actionEvent){
+        String season = PickCompetitionCombobox.getSelectionModel().getSelectedItem();
+        String id = "";
+        GoalDatabaseOperationImplementation goalOp = new GoalDatabaseOperationImplementation();
+        PlayerDatabaseOperationImplementation playerOp = new PlayerDatabaseOperationImplementation(null);
+        playerlist = FXCollections.observableArrayList(playerOp.findAll());
+        for(int i = 0; i < competitionlist.size(); i++){
+            if(competitionlist.get(i).getName().equals(season)){
+                id = competitionlist.get(i).getId();
+                break;
+            }
+        }
+        for (int i = 0; i < playerlist.size(); i++){
+            int goal = goalOp.findGoalOfPlayerInSeason(playerlist.get(i).getId(),id );
+            playerlist.get(i).setSumOfGoal(goal);
+        }
+        populateplayerlistbygoal2();
 
+    }
 
+    void populateplayerlistbygoal2(){
+        TableColumn<Player, String> idColumn = new TableColumn<>("ID");
+        idColumn.setCellValueFactory(new PropertyValueFactory<>("id"));
+        idColumn.setMinWidth(40);
+        idColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, String> nameColumn = new TableColumn<>("Name");
+        nameColumn.setCellValueFactory(new PropertyValueFactory<>("name"));
+        nameColumn.setMinWidth(180);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, String> nationalityColumn = new TableColumn<>("Nationality");
+        nationalityColumn.setCellValueFactory(new PropertyValueFactory<>("nationality"));
+        nationalityColumn.setMinWidth(110);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Date> dobColumn = new TableColumn<>("Date of birth");
+        dobColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
+        dobColumn.setMinWidth(120);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Double> heightColumn = new TableColumn<>("Height");
+        heightColumn.setCellValueFactory(new PropertyValueFactory<>("height"));
+        heightColumn.setMinWidth(70);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Double> weightColumn = new TableColumn<>("Weight");
+        weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
+        weightColumn.setMinWidth(70);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Integer> numberColumn = new TableColumn<>("Number");
+        numberColumn.setCellValueFactory(new PropertyValueFactory<>("number"));
+        numberColumn.setMinWidth(70);
+        nameColumn.setStyle("-fx-alignment: center;");
+
+        TableColumn<Player, Integer> goalColumn = new TableColumn<>("Number of goals");
+        goalColumn.setCellValueFactory(new PropertyValueFactory<>("sumOfGoal"));
+        goalColumn.setMinWidth(150);
+        goalColumn.setStyle("-fx-alignment: center;");
+
+        Report2TableView.setItems(playerlist);
+        Report2TableView.setStyle("-fx-font-size: 16px");
+        Report2TableView.getColumns().addAll(idColumn,nameColumn,nationalityColumn,dobColumn,heightColumn,weightColumn,numberColumn,goalColumn);
+    }
     
 }
