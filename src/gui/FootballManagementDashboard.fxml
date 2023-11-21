@@ -8,6 +8,8 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -21,9 +23,9 @@
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ff9696" height="646.0" stroke="#e4dcdc" strokeType="INSIDE" width="203.0" />
       <Line endX="16.0" layoutX="153.0" layoutY="137.0" startX="-119.0" />
-      <Button layoutX="56.0" layoutY="204.0" mnemonicParsing="false" onAction="#handleReportButton" prefHeight="38.0" prefWidth="77.0" stylesheets="@../styles/buttonnoboder.css" text="Report" />
-      <Button layoutX="56.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="38.0" prefWidth="77.0" stylesheets="@../styles/buttonnoboder.css" text="Update" />
-      <AnchorPane fx:id="HomePagePane" layoutX="200.0" layoutY="39.0" prefHeight="607.0" prefWidth="862.0">
+      <Button layoutX="64.0" layoutY="202.0" mnemonicParsing="false" onAction="#handleReportButton" prefHeight="38.0" prefWidth="77.0" stylesheets="@../styles/buttonnoboder.css" text="Report" />
+      <Button layoutX="64.0" layoutY="153.0" mnemonicParsing="false" onAction="#handleUpdateButton" prefHeight="38.0" prefWidth="77.0" stylesheets="@../styles/buttonnoboder.css" text="Update" />
+      <AnchorPane fx:id="HomePagePane" disable="true" layoutX="200.0" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="862.0">
          <children>
             <Label layoutX="258.0" layoutY="259.0" prefHeight="47.0" prefWidth="353.0" text="Welcome To Football Management System">
                <font>
@@ -32,7 +34,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="UpdateAnchorPane" layoutX="203.0" prefHeight="646.0" prefWidth="856.0">
+      <AnchorPane fx:id="UpdateAnchorPane" disable="true" layoutX="203.0" opacity="0.0" prefHeight="646.0" prefWidth="856.0">
          <children>
             <HBox prefHeight="38.0" prefWidth="393.0">
                <children>
@@ -248,30 +250,35 @@
                   <Button layoutX="140.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleReport3Button" prefHeight="38.0" prefWidth="79.0" stylesheets="@../styles/buttonnoboder.css" text="Report 3" />
                </children>
             </HBox>
-            <AnchorPane fx:id="Report1Pane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="Report1Pane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="856.0">
                <children>
-                  <Label alignment="CENTER" layoutX="156.0" layoutY="22.0" prefHeight="47.0" prefWidth="567.0" text="Label">
+                  <Label alignment="CENTER" layoutX="60.0" layoutY="22.0" prefHeight="47.0" prefWidth="234.0" text="Find players by statistics ">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
+                  <TextField fx:id="AgeLabel" alignment="CENTER" layoutX="299.0" layoutY="34.0" prefHeight="25.0" prefWidth="88.0" promptText="Age" />
+                  <TextField fx:id="HeightLabel" alignment="CENTER" layoutX="403.0" layoutY="34.0" prefHeight="25.0" prefWidth="88.0" promptText="Height" />
+                  <TextField fx:id="GoalsLabel" alignment="CENTER" layoutX="511.0" layoutY="32.0" prefHeight="25.0" prefWidth="88.0" promptText="Goals" />
+                  <Button layoutX="758.0" layoutY="31.0" mnemonicParsing="false" onAction="#handleFilterAction" prefHeight="26.0" prefWidth="55.0" stylesheets="@../styles/buttonnoboder.css" text="Filter" />
                   <TableView fx:id="Report1TableView" layoutX="25.0" layoutY="91.0" prefHeight="364.0" prefWidth="810.0" />
                </children>
             </AnchorPane>
             <AnchorPane fx:id="Report2Pane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
                <children>
                   <TableView fx:id="Report2TableView" layoutX="25.0" layoutY="91.0" prefHeight="364.0" prefWidth="810.0" />
-                  <Label alignment="CENTER" layoutX="156.0" layoutY="22.0" prefHeight="47.0" prefWidth="567.0" text="Label">
+                  <ComboBox layoutX="494.0" layoutY="33.0" prefHeight="30.0" prefWidth="160.0" />
+                  <Label alignment="CENTER" layoutX="156.0" layoutY="22.0" prefHeight="47.0" prefWidth="324.0" text="List of Top Goal Scorer by season">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
                </children>
             </AnchorPane>
-            <AnchorPane fx:id="Report3Pane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="Report3Pane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="778.0">
                <children>
                   <TableView fx:id="Report3TableView" layoutX="25.0" layoutY="101.0" prefHeight="334.0" prefWidth="810.0" />
-                  <Label alignment="CENTER" layoutX="156.0" layoutY="22.0" prefHeight="47.0" prefWidth="549.0" text="Label">
+                  <Label alignment="CENTER" layoutX="156.0" layoutY="22.0" prefHeight="47.0" prefWidth="277.0">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -280,5 +287,10 @@
             </AnchorPane>
          </children>
       </AnchorPane>
+      <ImageView fitHeight="100.0" fitWidth="126.0" layoutX="52.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../icon.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

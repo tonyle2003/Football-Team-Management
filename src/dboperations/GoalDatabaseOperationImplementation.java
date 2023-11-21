@@ -4,7 +4,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 import dbconnection.DBConnection;
 import objects.dbinterfaces.GoalDatabaseOperation;
 
@@ -58,4 +57,5 @@ public class GoalDatabaseOperationImplementation implements GoalDatabaseOperatio
         }
         return -1;
     }
+
 }
