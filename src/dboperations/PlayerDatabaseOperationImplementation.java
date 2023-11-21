@@ -91,6 +91,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
                         resultSet.getInt("player.number"));
                 int scored = goalDOB.findGoalOfPlayer(resultSet.getString("person.id"));
                 if (scored >= goal) {
+                    current.setSumOfGoal(goal);
                     result.put(current, scored);
                 }
             }
