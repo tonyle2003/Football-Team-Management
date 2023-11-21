@@ -18,16 +18,20 @@ CREATE TABLE club(
 );
 
 CREATE TABLE player(
-	id VARCHAR(255) PRIMARY KEY FOREIGN KEY REFERENCES person(id),
-	id_club VARCHAR(255) FOREIGN KEY REFERENCES club(id),
+	id VARCHAR(255) PRIMARY KEY,
+	id_club VARCHAR(255),
 	height DOUBLE,
 	weight DOUBLE,
-	number INT
+	number INT,
+	CONSTRAINT FOREIGN KEY (id) REFERENCES person(id),
+	CONSTRAINT FOREIGN KEY (id_club) REFERENCES club(id)
 );
 
 CREATE TABLE manager(
-	id VARCHAR(255) PRIMARY KEY FOREIGN KEY REFERENCES person(id),
-	id_club VARCHAR(255) FOREIGN KEY REFERENCES club(id)
+	id VARCHAR(255) PRIMARY KEY,
+	id_club VARCHAR(255),
+	CONSTRAINT FOREIGN KEY (id) REFERENCES person(id),
+	CONSTRAINT FOREIGN KEY (id_club) REFERENCES club(id)
 );
 
 CREATE TABLE football_competition(
@@ -37,19 +41,24 @@ CREATE TABLE football_competition(
 	nationality VARCHAR(255)
 );
 
-CREATE TABLE match(
+CREATE TABLE _match(
     id VARCHAR(255) PRIMARY KEY,
-    id_home VARCHAR(255) FOREIGN KEY REFERENCES club(id),
-    id_away VARCHAR(255) FOREIGN KEY REFERENCES club(id),
-    id_competition VARCHAR(255) FOREIGN KEY REFERENCES football_competition(id),
+    id_home VARCHAR(255),
+    id_away VARCHAR(255),
+    id_competition VARCHAR(255),
     _date DATE,
     result VARCHAR(255),
-    stadium VARCHAR(255)
+    stadium VARCHAR(255),
+	CONSTRAINT FOREIGN KEY (id_home) REFERENCES club(id),
+	CONSTRAINT FOREIGN KEY (id_away) REFERENCES club(id),
+	CONSTRAINT FOREIGN KEY (id_competition) REFERENCES football_competition(id)
 );
 
 CREATE TABLE goal(
     id VARCHAR(255) PRIMARY KEY,
-    id_match VARCHAR(255) FOREIGN KEY REFERENCES match(id),
-    id_player VARCHAR(255) FOREIGN KEY REFERENCES player(id),
-    goal_type VARCHAR(255)
+    id_match VARCHAR(255),
+    id_player VARCHAR(255),
+    goal_type VARCHAR(255),
+	CONSTRAINT FOREIGN KEY (id_match) REFERENCES _match(id),
+	CONSTRAINT FOREIGN KEY (id_player) REFERENCES player(id)
 );

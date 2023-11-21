@@ -8,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dbconnection.DBConnection;
-import users.Club;
 import users.dbinterfaces.ClubDatabaseOperation;
 
 public class ClubDatabaseOperationImplementation implements ClubDatabaseOperation {
