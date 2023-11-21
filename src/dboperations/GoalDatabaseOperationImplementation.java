@@ -4,8 +4,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.ArrayList;
 
 import dbconnection.DBConnection;
+import objects.Goal;
 import objects.dbinterfaces.GoalDatabaseOperation;
 
 public class GoalDatabaseOperationImplementation implements GoalDatabaseOperation {
@@ -58,4 +61,5 @@ public class GoalDatabaseOperationImplementation implements GoalDatabaseOperatio
         }
         return -1;
     }
+
 }
