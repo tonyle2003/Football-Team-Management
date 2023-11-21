@@ -346,11 +346,13 @@ public class FootballManagementDashboardController implements Initializable {
     @FXML
     private void pickedClubComboBox(ActionEvent actionEvent){
         ListPlayerView.getColumns().clear();
-        clubId = ClubIdComboBox.getSelectionModel().getSelectedItem();
+        String clubName = ClubIdComboBox.getSelectionModel().getSelectedItem();
+        System.out.println(clubId);
         PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
+        ClubDatabaseOperationImplementation reOp = new ClubDatabaseOperationImplementation();
+        clubId = reOp.findIdbyName(clubName);
         playerlist = FXCollections.observableArrayList(regOp.findAllByClubId(clubId));
         populateplayerlist();
-
     }
 
     /*
@@ -433,8 +435,8 @@ public class FootballManagementDashboardController implements Initializable {
         heightColumn.setMinWidth(100);
         nameColumn.setStyle("-fx-alignment: center;");
 
-        TableColumn<Player, Double> weightColumn = new TableColumn<>("Weigeightht");
-        weightColumn.setCellValueFactory(new PropertyValueFactory<>("w"));
+        TableColumn<Player, Double> weightColumn = new TableColumn<>("Weight");
+        weightColumn.setCellValueFactory(new PropertyValueFactory<>("weight"));
         weightColumn.setMinWidth(100);
         nameColumn.setStyle("-fx-alignment: center;");
 
@@ -443,13 +445,11 @@ public class FootballManagementDashboardController implements Initializable {
         numberColumn.setMinWidth(100);
         nameColumn.setStyle("-fx-alignment: center;");
 
-        Report1TableView.setItems(playerlist);
-        Report1TableView.setStyle("-fx-font-size: 18px");
-        Report1TableView.getColumns().addAll(idColumn,nameColumn,nationalityColumn,dobColumn,heightColumn,weightColumn,numberColumn);
+        ListPlayerView.setItems(playerlist);
+        ListPlayerView.setStyle("-fx-font-size: 18px");
+        ListPlayerView.getColumns().addAll(idColumn,nameColumn,nationalityColumn,dobColumn,heightColumn,weightColumn,numberColumn);
+
         
-        TableColumn<Player, Integer> goalsColumn = new TableColumn<>("Goals");
-        goalsColumn.setCellValueFactory(new PropertyValueFactory<>("SumGoal"));
-        Report1TableView.getColumns().add(goalsColumn);
     }
 
     void populateplayerlistbygoal(){
@@ -492,6 +492,9 @@ public class FootballManagementDashboardController implements Initializable {
         ListPlayerView.setStyle("-fx-font-size: 18px");
         ListPlayerView.getColumns().addAll(idColumn,nameColumn,nationalityColumn,dobColumn,heightColumn,weightColumn,numberColumn);
 
+        TableColumn<Player, Integer> goalsColumn = new TableColumn<>("Goals");
+        goalsColumn.setCellValueFactory(new PropertyValueFactory<>("sumGoal"));
+        Report1TableView.getColumns().add(goalsColumn);
     }
 
 

@@ -35,4 +35,22 @@ public class ClubDatabaseOperationImplementation implements ClubDatabaseOperatio
         return null;
     }
 
+    @Override
+    public String findIdbyName(String name) {
+        try {
+            PreparedStatement statement = connection.prepareStatement(
+                    "SELECT * FROM club WHERE name = ?");
+            statement.setString(1, name);
+            ResultSet result = statement.executeQuery();
+            if (result.next()) {
+                return result.getString(1);
+            } else {
+                return "";
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
+
+    }
 }
