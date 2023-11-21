@@ -73,8 +73,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             calendar.add(Calendar.YEAR, -age);
 
             PreparedStatement statement = this.connection.prepareStatement(
-                    "SELECT * FROM person JOIN player ON person.id=player.id" +
-                            "WHERE player.height >= ? AND person.date_of_birth <= ?");
+                "SELECT * FROM person JOIN player ON person.id = player.id WHERE player.height >= ? AND person.date_of_birth <= ?");
             statement.setDouble(1, height);
             statement.setDate(2, new Date(calendar.getTime().getTime()));
 
