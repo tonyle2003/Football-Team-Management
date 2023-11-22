@@ -91,7 +91,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
                         resultSet.getInt("player.number"));
                 int scored = goalDOB.findGoalOfPlayer(resultSet.getString("person.id"));
                 if (scored >= goal) {
-                    current.setSumOfGoal(goal);
+                    current.setSumOfGoal(scored);
                     result.put(current, scored);
                 }
             }
@@ -175,19 +175,21 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
     public boolean insertPlayer(Player player) {
         try {
             PreparedStatement statement = this.connection.prepareStatement(
-                "INSERT INTO person VALUES(?,?,?,?);" +
-                "INSERT INTO player(id, height, weight, number) VALUES(?,?,?,?)");
+                    "INSERT INTO football_management.person VALUES(?,?,?,?)");
             statement.setString(1, player.getId());
             statement.setString(2, player.getName());
             statement.setString(3, player.getNationality());
             statement.setDate(4, Date.valueOf(player.getDateOfBirth()));
-            statement.setString(5, player.getId());
-            statement.setDouble(6, player.getHeight());
-            statement.setDouble(7, player.getWeight());
-            statement.setInt(8, player.getNumber());
+            PreparedStatement statement2 = this.connection.prepareStatement(
+                    "INSERT INTO football_management.player(id, height, weight, number) VALUES(?,?,?,?) ");
+            statement2.setString(1, player.getId());
+            statement2.setDouble(2, player.getHeight());
+            statement2.setDouble(3, player.getWeight());
+            statement2.setInt(4, player.getNumber());
 
             int rowEffected = statement.executeUpdate();
-            if (rowEffected == 1) {
+            int rowEffected2 = statement2.executeUpdate();
+            if (rowEffected == 1 && rowEffected2 == 1) {
                 connection.commit();
                 return true;
             } else {
@@ -205,9 +207,9 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
     public boolean updatePlayerById(Player player, String id) {
         try {
             PreparedStatement statement = this.connection.prepareStatement(
-                    "UPDATE person JOIN player ON player.id = person.id" +
-                    "SET person.name=?, person.nationality=?, person.date_of_birth=?, player.height=?, player.weight=?, player.number=?" +
-                    "WHERE person.id=?");
+                    "UPDATE person JOIN player ON player.id = person.id " +
+                    " SET person.name=?, person.nationality=?, person.date_of_birth=?, player.height=?, player.weight=?, player.number=? " +
+                    " WHERE person.id=? ");
             statement.setString(1, player.getName());
             statement.setString(2, player.getNationality());
             statement.setDate(3, Date.valueOf(player.getDateOfBirth()));
@@ -216,7 +218,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             statement.setInt(6, player.getNumber());
             statement.setString(7, player.getId());
             int rowEffected = statement.executeUpdate();
-            if (rowEffected == 1) {
+            if (rowEffected == 2) {
                 connection.commit();
                 return true;
             } else {

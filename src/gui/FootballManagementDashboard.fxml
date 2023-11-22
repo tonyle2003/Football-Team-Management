@@ -34,7 +34,7 @@
             </Label>
          </children>
       </AnchorPane>
-      <AnchorPane fx:id="UpdateAnchorPane" disable="true" layoutX="203.0" opacity="0.0" prefHeight="646.0" prefWidth="856.0">
+      <AnchorPane fx:id="UpdateAnchorPane" layoutX="203.0" prefHeight="646.0" prefWidth="856.0">
          <children>
             <HBox prefHeight="38.0" prefWidth="393.0">
                <children>
@@ -121,7 +121,7 @@
                         </Button>
                      </children>
                   </GridPane>
-                  <Label fx:id="ImportLabel" layoutX="369.0" layoutY="446.0" prefHeight="26.0" prefWidth="220.0" text="Label">
+                  <Label fx:id="ImportLabel" layoutX="298.0" layoutY="446.0" prefHeight="26.0" prefWidth="342.0" text="Label">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -218,6 +218,11 @@
                      </font>
                   </Label>
                   <ComboBox fx:id="updatePlayerComboBox" layoutX="392.0" layoutY="38.0" onAction="#handlechooseplayer" prefHeight="35.0" prefWidth="160.0" />
+                  <Label fx:id="UpdateLabel" layoutX="297.0" layoutY="476.0" prefHeight="30.0" prefWidth="405.0" text="Label">
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
             <AnchorPane fx:id="RemoveplayersPane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
@@ -234,11 +239,6 @@
                   <Button layoutX="197.0" layoutY="444.0" mnemonicParsing="false" onAction="#handleRemovalReload" prefHeight="30.0" prefWidth="77.0" stylesheets="@../styles/buttonnoboder.css" text="Reload" />
                </children>
             </AnchorPane>
-            <Label fx:id="UpdateLabel" layoutX="365.0" layoutY="500.0" prefHeight="30.0" prefWidth="234.0" text="Label">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="ReportAnchorPane" layoutX="199.0" prefHeight="624.0" prefWidth="862.0">
@@ -250,7 +250,7 @@
                   <Button layoutX="140.0" layoutY="10.0" mnemonicParsing="false" onAction="#handleReport3Button" prefHeight="38.0" prefWidth="79.0" stylesheets="@../styles/buttonnoboder.css" text="Report 3" />
                </children>
             </HBox>
-            <AnchorPane fx:id="Report1Pane" disable="true" layoutY="39.0" opacity="0.0" prefHeight="607.0" prefWidth="856.0">
+            <AnchorPane fx:id="Report1Pane" layoutY="39.0" prefHeight="607.0" prefWidth="856.0">
                <children>
                   <Label alignment="CENTER" layoutX="60.0" layoutY="22.0" prefHeight="47.0" prefWidth="234.0" text="Find players by statistics ">
                      <font>
