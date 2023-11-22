@@ -382,7 +382,7 @@ public class FootballManagementDashboardController implements Initializable {
 
         TableColumn<Player, Date> dobColumn = new TableColumn<>("Date of birth");
         dobColumn.setCellValueFactory(new PropertyValueFactory<>("dateOfBirth"));
-        dobColumn.setMinWidth(180);
+        dobColumn.setMinWidth(140);
         nameColumn.setStyle("-fx-alignment: center;");
 
         TableColumn<Player, Double> heightColumn = new TableColumn<>("Height");
