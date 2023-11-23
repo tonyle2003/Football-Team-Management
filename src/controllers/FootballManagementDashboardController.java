@@ -142,16 +142,10 @@ public class FootballManagementDashboardController implements Initializable {
     private AnchorPane Report2Pane;
 
     @FXML
-    private AnchorPane Report3Pane;
-
-    @FXML
     private TableView<Player> Report1TableView;
 
     @FXML
     private TableView<Player> Report2TableView;
-
-    @FXML
-    private TableView<Player> Report3TableView;
 
     @FXML
     private TextField AgeLabel;
@@ -222,7 +216,8 @@ public class FootballManagementDashboardController implements Initializable {
         String playerid = updatePlayerComboBox.getSelectionModel().getSelectedItem();
         PlayerDatabaseOperationImplementation regOp = new PlayerDatabaseOperationImplementation(null);
         Player player = regOp.findById(playerid);
-        UpdatePlayersIdLabel.setText(player.getId());
+        System.out.println(player.getId());
+        UpdatePlayersIdLabel.setText(playerid);
         UpdatePlayersNameTextField.setText(player.getName());
         UpdatePlayersNationalityTextField.setText(player.getNationality());
         UpdatePlayersDatePicker.setValue(player.getDateOfBirth());
@@ -417,14 +412,14 @@ public class FootballManagementDashboardController implements Initializable {
         ReportAnchorPane.setVisible(true);
         Report1Pane.setVisible(false);
         Report2Pane.setVisible(false);
-        Report3Pane.setVisible(false);
+        //Report3Pane.setVisible(false);
     }
 
     @FXML
     private void handleReport1Button(ActionEvent actionEvent){
         Report1Pane.setVisible(true);
         Report2Pane.setVisible(false);
-        Report3Pane.setVisible(false);
+        //Report3Pane.setVisible(false);
         Report1TableView.getColumns().clear();
     }
 
@@ -445,7 +440,7 @@ public class FootballManagementDashboardController implements Initializable {
     private void handleReport2Button(ActionEvent actionEvent){
         Report1Pane.setVisible(false);
         Report2Pane.setVisible(true);
-        Report3Pane.setVisible(false);
+        //Report3Pane.setVisible(false);
         Report2TableView.getColumns().clear();
         FootballCompetitionDatabaseOperationImplementation regOp = new FootballCompetitionDatabaseOperationImplementation();
         competitionlist = FXCollections.observableArrayList(regOp.findAll());
@@ -455,13 +450,6 @@ public class FootballManagementDashboardController implements Initializable {
         }
         PickCompetitionCombobox.setItems(competitionlistName);
 
-    }
-
-    @FXML
-    private void handleReport3Button(ActionEvent actionEvent){
-        Report1Pane.setVisible(false);
-        Report2Pane.setVisible(false);
-        Report3Pane.setVisible(true);
     }
 
     void populateplayerlistbygoal(){
