@@ -1,0 +1,42 @@
+id,name,stadium
+EPL01,Arsenal,Emirates Stadium
+EPL02,Aston Villa,Villa Park
+EPL03,Brentford,Brentford Community Stadium
+EPL04,Brighton & Hove Albion,Falmer Stadium
+EPL05,Burnley,Turf Moor
+EPL06,Chelsea,Stamford Bridge
+EPL07,Crystal Palace,Selhurst Park
+EPL08,Everton,Goodison Park
+EPL09,Leeds United,Elland Road
+EPL10,Leicester City,King Power Stadium
+EPL11,Liverpool,Anfield
+EPL12,Manchester City,Etihad Stadium
+EPL13,Manchester United,Old Trafford
+EPL14,Newcastle United,St James' Park
+EPL15,Norwich City,Carrow Road
+EPL16,Southampton,St Mary's Stadium
+EPL17,Tottenham Hotspur,Tottenham Hotspur Stadium
+EPL18,Watford,Vicarage Road
+EPL19,West Ham United,London Stadium
+EPL20,Wolverhampton Wanderers,Molineux Stadium
+LLG01,Real Madrid,Santiago Bernabeu
+LLG02,FC Barcelona,Camp Nou
+LLG03,Atletico Madrid,Wanda Metropolitano
+LLG04,Sevilla FC,Ramon Sanchez Pizjuán
+LLG05,Real Sociedad,Anoeta
+LLG06,Valencia CF,Mestalla
+LLG07,Villarreal CF,Estadio de la Ceramica
+LLG08,Athletic Bilbao,San Mames
+LLG09,Real Betis,Benito Villamarin
+LLG10,Levante UD,Estadi Ciutat de Valencia
+LLG11,Celta Vigo,Abanca-Balaidos
+LLG12,Granada CF,Estadio Nuevo Los Carmenes
+LLG13,SD Eibar,Ipurua
+LLG14,Getafe CF,Coliseum Alfonso Perez
+LLG15,Deportivo Alaves,Mendizorroza
+LLG16,Valladolid,Estadio Jose Zorrilla
+LLG17,Osasuna,El Sadar
+LLG18,Huesca,Estadio El Alcoraz
+LLG19,Cadiz CF,Estadio Ramon de Carranza
+LLG20,Elche CF,Estadio Martinez Valero
+

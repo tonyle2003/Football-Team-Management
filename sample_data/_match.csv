@@ -1,0 +1,9 @@
+id,id_home,id_away,id_competition,_date,result,stadium
+mu-che-1,EPL13,EPL06,EPL,2023-05-07,10-8,Old Trafford
+mc-ars-1,EPL12,EPL01,EPL,2023-07-05,6-2,Etihad
+liv-tot-1,EPL11,EPL17,EPL,2023-06-08,7-5,Anfield
+eve-sou-1,EPL08,EPL16,EPL,2023-04-05,9-9,Goodison Park
+eib-val-1,LLG13,LLG06,LLG,2023-05-07,10-8,Ipurua
+gran-realmarid-1,LLG12,LLG01,LLG,2023-07-05,6-2,Estadio Nuevo Los Carmenes
+cel-osas-1,LLG11,LLG17,LLG,2023-06-08,7-5,Abanca-Balaidos
+athletic-valla-1,LLG08,LLG16,LLG,2023-04-05,9-9,San Mames

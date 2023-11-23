@@ -1,0 +1,114 @@
+id,id_match,id_player,goal_type
+GEPL01,mu-che-1,PEPL16,Header
+GEPL02,mu-che-1,PEPL18,Header
+GEPL03,mu-che-1,PEPL17,Header
+GEPL04,mu-che-1,PEPL18,Header
+GEPL05,mu-che-1,PEPL16,Header
+GEPL06,mu-che-1,PEPL16,Header
+GEPL07,mu-che-1,PEPL17,Header
+GEPL08,mu-che-1,PEPL17,Header
+GEPL09,mu-che-1,PEPL37,Header
+GEPL10,mu-che-1,PEPL38,Header
+GEPL11,mu-che-1,PEPL39,Header
+GEPL12,mu-che-1,PEPL37,Header
+GEPL13,mu-che-1,PEPL37,Header
+GEPL14,mu-che-1,PEPL37,Header
+GEPL15,mu-che-1,PEPL38,Header
+GEPL16,mu-che-1,PEPL38,Header
+GEPL17,mu-che-1,PEPL38,Header
+GEPL18,mu-che-1,PEPL38,Header
+GEPL19,mc-ars-1,PEPL35,Header
+GEPL20,mc-ars-1,PEPL34,Header
+GEPL21,mc-ars-1,PEPL36,Header
+GEPL22,mc-ars-1,PEPL35,Header
+GEPL23,mc-ars-1,PEPL35,Header
+GEPL24,mc-ars-1,PEPL34,Header
+GEPL25,mc-ars-1,PEPL01,Header
+GEPL26,mc-ars-1,PEPL02,Header
+GEPL27,liv-tot-1,PEPL31,Long shot
+GEPL28,liv-tot-1,PEPL32,Long shot
+GEPL29,liv-tot-1,PEPL33,Long shot
+GEPL30,liv-tot-1,PEPL32,Long shot
+GEPL31,liv-tot-1,PEPL32,Long shot
+GEPL32,liv-tot-1,PEPL32,Long shot
+GEPL33,liv-tot-1,PEPL32,Long shot
+GEPL34,liv-tot-1,PEPL49,Long shot
+GEPL35,liv-tot-1,PEPL49,Long shot
+GEPL36,liv-tot-1,PEPL50,Long shot
+GEPL37,liv-tot-1,PEPL51,Long shot
+GEPL38,liv-tot-1,PEPL49,Long shot
+GEPL39,eve-sou-1,PEPL22,Long shot
+GEPL40,eve-sou-1,PEPL23,Long shot
+GEPL41,eve-sou-1,PEPL24,Long shot
+GEPL42,eve-sou-1,PEPL24,Long shot
+GEPL43,eve-sou-1,PEPL22,Long shot
+GEPL44,eve-sou-1,PEPL22,Long shot
+GEPL45,eve-sou-1,PEPL23,Long shot
+GEPL46,eve-sou-1,PEPL23,Long shot
+GEPL47,eve-sou-1,PEPL24,Long shot
+GEPL48,eve-sou-1,PEPL46,Long shot
+GEPL49,eve-sou-1,PEPL47,Long shot
+GEPL50,eve-sou-1,PEPL48,Long shot
+GEPL51,eve-sou-1,PEPL48,Long shot
+GEPL52,eve-sou-1,PEPL47,Long shot
+GEPL53,eve-sou-1,PEPL47,Long shot
+GEPL54,eve-sou-1,PEPL47,Long shot
+GEPL55,eve-sou-1,PEPL47,Long shot
+GEPL56,eve-sou-1,PEPL48,Long shot
+GLLG01,eib-val-1,PLLG16,Header
+GLLG01,eib-val-1,PLLG17,Header
+GLLG02,eib-val-1,PLLG18,Header
+GLLG03,eib-val-1,PLLG17,Header
+GLLG04,eib-val-1,PLLG18,Header
+GLLG05,eib-val-1,PLLG16,Header
+GLLG06,eib-val-1,PLLG16,Header
+GLLG07,eib-val-1,PLLG17,Header
+GLLG08,eib-val-1,PLLG17,Header
+GLLG09,eib-val-1,PLLG37,Header
+GLLG10,eib-val-1,PLLG38,Header
+GLLG11,eib-val-1,PLLG39,Header
+GLLG12,eib-val-1,PLLG37,Header
+GLLG13,eib-val-1,PLLG37,Header
+GLLG14,eib-val-1,PLLG37,Header
+GLLG15,eib-val-1,PLLG38,Header
+GLLG16,eib-val-1,PLLG38,Header
+GLLG17,eib-val-1,PLLG38,Header
+GLLG18,eib-val-1,PLLG38,Header
+GLLG19,gran-realmarid-1,PLLG35,Header
+GLLG20,gran-realmarid-1,PLLG34,Header
+GLLG21,gran-realmarid-1,PLLG36,Header
+GLLG22,gran-realmarid-1,PLLG35,Header
+GLLG23,gran-realmarid-1,PLLG35,Header
+GLLG24,gran-realmarid-1,PLLG34,Header
+GLLG25,gran-realmarid-1,PLLG01,Header
+GLLG26,gran-realmarid-1,PLLG02,Header
+GLLG27,cel-osas-1,PLLG31,Long shot
+GLLG28,cel-osas-1,PLLG32,Long shot
+GLLG29,cel-osas-1,PLLG33,Long shot
+GLLG30,cel-osas-1,PLLG32,Long shot
+GLLG31,cel-osas-1,PLLG32,Long shot
+GLLG32,cel-osas-1,PLLG32,Long shot
+GLLG33,cel-osas-1,PLLG32,Long shot
+GLLG34,cel-osas-1,PLLG49,Long shot
+GLLG35,cel-osas-1,PLLG49,Long shot
+GLLG36,cel-osas-1,PLLG50,Long shot
+GLLG37,cel-osas-1,PLLG51,Long shot
+GLLG38,cel-osas-1,PLLG49,Long shot
+GLLG39,athletic-valla-1,PLLG22,Long shot
+GLLG40,athletic-valla-1,PLLG23,Long shot
+GLLG41,athletic-valla-1,PLLG24,Long shot
+GLLG42,athletic-valla-1,PLLG24,Long shot
+GLLG43,athletic-valla-1,PLLG22,Long shot
+GLLG44,athletic-valla-1,PLLG22,Long shot
+GLLG45,athletic-valla-1,PLLG23,Long shot
+GLLG46,athletic-valla-1,PLLG23,Long shot
+GLLG47,athletic-valla-1,PLLG24,Long shot
+GLLG48,athletic-valla-1,PLLG46,Long shot
+GLLG49,athletic-valla-1,PLLG47,Long shot
+GLLG50,athletic-valla-1,PLLG48,Long shot
+GLLG51,athletic-valla-1,PLLG48,Long shot
+GLLG52,athletic-valla-1,PLLG47,Long shot
+GLLG53,athletic-valla-1,PLLG47,Long shot
+GLLG54,athletic-valla-1,PLLG47,Long shot
+GLLG55,athletic-valla-1,PLLG47,Long shot
+GLLG56,athletic-valla-1,PLLG48,Long shot
