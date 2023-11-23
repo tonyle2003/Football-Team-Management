@@ -503,33 +503,15 @@ public class FootballManagementDashboardController implements Initializable {
         Report2TableView.getColumns().clear();
         String season = PickCompetitionCombobox.getSelectionModel().getSelectedItem();
         String id = "";
-        GoalDatabaseOperationImplementation goalOp = new GoalDatabaseOperationImplementation();
+        for(int i = 0; i < competitionlist.size(); i++){
+            if(competitionlist.get(i).getName().equals(season)){
+                id = competitionlist.get(i).getId();
+                break;
+            }
+        }
+        System.out.println(id);
         PlayerDatabaseOperationImplementation playerOp = new PlayerDatabaseOperationImplementation(null);
-        ObservableList<Player> playerslist = FXCollections.observableArrayList(playerOp.findPlayersAndGoalsInSeasonOrderByGoal(season));
-
-        // for(int i = 0; i < competitionlist.size(); i++){
-        //     if(competitionlist.get(i).getName().equals(season)){
-        //         id = competitionlist.get(i).getId();
-        //         break;
-        //     }
-        // }
-
-        // for (int i = 0; i < playerslist.size(); i++){
-        //     int goal = goalOp.findGoalOfPlayerInSeason(playerslist.get(i).getId(),id );
-        //     playerslist.get(i).setSumOfGoal(goal);
-        // }
-
-        // List<Player> playerlist2 = new ArrayList<>();
-        // for (int i = 0; i < playerslist.size(); i++){
-        //     if(playerslist.get(i).getSumOfGoal() != 0){
-        //         playerlist2.add(playerslist.get(i));
-        //     }
-        // }
-
-        // playerlist = FXCollections.observableArrayList(playerlist2);
-        // for (int i = 0; i < playerlist.size(); i++){
-        //     System.out.println(playerlist.get(i).getSumOfGoal() + " " + playerlist.get(i).getName());
-        // }
+        playerlist = FXCollections.observableArrayList(playerOp.findPlayersAndGoalsInSeasonOrderByGoal(id)); 
         populateplayerlistbygoal2();
 
     }

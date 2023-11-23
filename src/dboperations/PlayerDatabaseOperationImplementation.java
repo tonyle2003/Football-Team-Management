@@ -252,7 +252,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
     @Override
     public List<Player> findPlayersAndGoalsInSeasonOrderByGoal(String season) {
         String query = """
-                SELECT *, COUNT(goal.id) AS total_goals
+                SELECT person.id, person.name,peson.nationality,person.date_of_birth,player.height,player.weight,player.number, COUNT(goal.id) AS total_goals
                 FROM goal
                 JOIN player ON goal.id_player = player.id
                 JOIN _match ON goal.id_match = _match.id
