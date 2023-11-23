@@ -512,6 +512,7 @@ public class FootballManagementDashboardController implements Initializable {
         System.out.println(id);
         PlayerDatabaseOperationImplementation playerOp = new PlayerDatabaseOperationImplementation(null);
         playerlist = FXCollections.observableArrayList(playerOp.findPlayersAndGoalsInSeasonOrderByGoal(id)); 
+    
         populateplayerlistbygoal2();
 
     }
