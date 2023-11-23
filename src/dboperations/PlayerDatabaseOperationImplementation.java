@@ -73,7 +73,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             calendar.add(Calendar.YEAR, -age);
 
             PreparedStatement statement = this.connection.prepareStatement(
-                "SELECT * FROM person JOIN player ON person.id = player.id WHERE player.height >= ? AND person.date_of_birth <= ?");
+                    "SELECT * FROM person JOIN player ON person.id = player.id WHERE player.height >= ? AND person.date_of_birth <= ?");
             statement.setDouble(1, height);
             statement.setDate(2, new Date(calendar.getTime().getTime()));
 
@@ -208,8 +208,9 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
         try {
             PreparedStatement statement = this.connection.prepareStatement(
                     "UPDATE person JOIN player ON player.id = person.id " +
-                    " SET person.name=?, person.nationality=?, person.date_of_birth=?, player.height=?, player.weight=?, player.number=? " +
-                    " WHERE person.id=? ");
+                            " SET person.name=?, person.nationality=?, person.date_of_birth=?, player.height=?, player.weight=?, player.number=? "
+                            +
+                            " WHERE person.id=? ");
             statement.setString(1, player.getName());
             statement.setString(2, player.getNationality());
             statement.setDate(3, Date.valueOf(player.getDateOfBirth()));
@@ -246,5 +247,42 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
             e.printStackTrace();
         }
         return players;
+    }
+
+    @Override
+    public List<Player> findPlayersAndGoalsInSeasonOrderByGoal(String season) {
+        String query = """
+                SELECT *, COUNT(goal.id) AS total_goals
+                FROM goal
+                JOIN player ON goal.id_player = player.id
+                JOIN _match ON goal.id_match = _match.id
+                JOIN football_competition ON _match.id_competition = football_competition.id
+                GROUP BY player.id, football_competition.id
+                HAVING
+                    goal.goal_type != 'OG' and football_competition.id = ?
+                ORDER BY
+                    total_goals DESC;
+                """;
+        try {
+            PreparedStatement statement = connection.prepareStatement(query);
+            statement.setString(1, season);
+            ResultSet resultSet = statement.executeQuery();
+            List<Player> players = new ArrayList<Player>();
+            while (resultSet.next()) {
+                Player current = new Player(resultSet.getString("person.id"),
+                        resultSet.getString("person.name"),
+                        resultSet.getString("person.nationality"),
+                        resultSet.getDate("person.date_of_birth").toLocalDate(),
+                        resultSet.getDouble("player.height"),
+                        resultSet.getDouble("player.weight"),
+                        resultSet.getInt("player.number"));
+                current.setSumOfGoal(resultSet.getInt("total_goals"));
+                players.add(current);
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 }
