@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.RwesultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -281,6 +282,7 @@ public class PlayerDatabaseOperationImplementation implements PlayerDatabaseOper
                 players.add(current);
 
             }
+            return players;
         } catch (SQLException e) {
             e.printStackTrace();
         }
